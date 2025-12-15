@@ -149,10 +149,17 @@ function timefield_field_instance_settings_form($field, $instance) {
     '#default_value' => isset($settings['disable_plugin']) ? $settings['disable_plugin'] : FALSE,
     '#description' => t('Do not use jQuery Timepicker plugin for input.'),
   );
+  $form['no_fieldset'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Exclude wrapping fieldset'),
+    '#default_value' => !empty($settings['no_fieldset']),
+    '#description' => t('Simplify styling when using simple inputs, such as a single text field for the time popup.'),
+  );
 
   $form['input_format'] = array(
     '#title' => t('Time Input Format'),
     '#type' => 'fieldset',
+    '#collapsible' => TRUE,
   );
   $form['input_format']['separator'] = array(
     '#title' => t('Hour and Minute Separator'),
@@ -765,12 +772,21 @@ function timefield_field_widget_form(&$form, &$form_state, $field, $instance, $l
   switch ($instance['widget']['type']) {
     case 'timefield_standard':
 
-      $element += array(
-        '#title' => 'Time',
-        '#type' => 'fieldset',
-        '#delta' => $delta,
-        '#element_validate' => array('timefield_time_validate'),
-      );
+      if (!$instance_settings['no_fieldset']) {
+        $element += array(
+          '#title' => 'Time',
+          '#type' => 'fieldset',
+          '#delta' => $delta,
+          '#element_validate' => array('timefield_time_validate'),
+        );
+      }
+      else {
+        $element += array(
+          '#type' => 'container',
+          '#delta' => $delta,
+          '#element_validate' => array('timefield_time_validate'),
+        );
+      }
 
       if (!$instance_settings['disable_plugin']) {
         $js_settings = _timefield_js_settings($instance_class, $instance_settings['input_format']);
