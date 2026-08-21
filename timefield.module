@@ -1296,12 +1296,12 @@ function timefield_property_info_callback(&$info, $entity_type, $field, $instanc
     'value' => array(
       'label' => t('Integer offset for the Start Time'),
       'type'  => 'integer',
-      'getter callback' => 'entity_property_verbatim_get',
+      'getter callback' => 'entity_plus_property_verbatim_get',
     ),
     'value_formatted' => array(
       'label' => t('Start Time'),
       'type'  => 'text',
-      'getter callback' => 'entity_property_verbatim_get',
+      'getter callback' => 'entity_plus_property_verbatim_get',
     ),
   );
 
@@ -1309,12 +1309,12 @@ function timefield_property_info_callback(&$info, $entity_type, $field, $instanc
     $property['property info']['value2'] = array(
       'label' => t('Integer Offset for the End Time'),
       'type'  => 'integer',
-      'getter callback' => 'entity_property_verbatim_get',
+      'getter callback' => 'entity_plus_property_verbatim_get',
     );
     $property['property info']['value2_formatted'] = array(
       'label' => t('End Time'),
       'type'  => 'text',
-      'getter callback' => 'entity_property_verbatim_get',
+      'getter callback' => 'entity_plus_property_verbatim_get',
     );
   }
 
@@ -1323,8 +1323,8 @@ function timefield_property_info_callback(&$info, $entity_type, $field, $instanc
       'label' => t('Label'),
       'description' => t('The label of this weekly schedule'),
       'type' => 'text',
-      'getter callback' => 'entity_property_verbatim_get',
-      'setter callback' => 'entity_property_verbatim_set',
+      'getter callback' => 'entity_plus_property_verbatim_get',
+      'setter callback' => 'entity_plus_property_verbatim_set',
     );
   }
 
@@ -1334,8 +1334,8 @@ function timefield_property_info_callback(&$info, $entity_type, $field, $instanc
         'label' => $label,
         'description' => t('If this schedule applies to !day', array('!day' => $label)),
         'type' => 'boolean',
-        'getter callback' => 'entity_property_verbatim_get',
-        'setter callback' => 'entity_property_verbatim_set',
+        'getter callback' => 'entity_plus_property_verbatim_get',
+        'setter callback' => 'entity_plus_property_verbatim_set',
       );
     }
   }
